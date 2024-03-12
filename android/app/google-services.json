@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "136972253756",
+    "project_id": "scrolls-33650",
+    "storage_bucket": "scrolls-33650.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:136972253756:android:938d34c11b8df47c9e2139",
+        "android_client_info": {
+          "package_name": "com.example.scrolls"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCKzWmxu1KxId5bl7_gl7LnJQm8nMSabQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
