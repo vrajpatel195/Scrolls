@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:scrolls/view/screens/add_video.dart';
 
 // getRandomColor() => Colors.primaries[Random().nextInt(Colors.primaries.length)];
 
@@ -16,10 +17,10 @@ const borderColor = Colors.grey;
 const primaryColor = Color(0xff151414);
 const darkBackgroundColor = Color(0xff0C090A);
 
-const pageindex = [
-  'Home',
-  'Search',
-  'Upload Video',
-  'Message',
-  'Profile'
+var pageindex = [
+  Text('Home'),
+  Text('Search'),
+  AddVideoScreen(),
+  Text('Message'),
+  Text('Profile')
 ];

@@ -39,7 +39,7 @@ int pageIdx = 0;
           label: "Profile")
         ],
       ),
-      body: Center(child: Text(pageindex[pageIdx]),),
+      body: Center(child: pageindex[pageIdx]),
     );
   }
 }
