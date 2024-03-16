@@ -6,6 +6,8 @@ import 'package:scrolls/view/widgets/glitch.dart';
 import 'package:scrolls/view/widgets/text_input.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../signup/signup_screen.dart';
+
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
 
@@ -135,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SignupScreen()));
                   },
                   child: const IconContainer(
                     widget: Center(

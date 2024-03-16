@@ -65,4 +65,7 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation("com.otaliastudios:transcoder:0.9.1")
+    implementation 'com.google.firebase:firebase-appcheck-safetynet:16.0.0'
+}

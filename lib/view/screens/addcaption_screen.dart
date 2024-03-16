@@ -2,13 +2,16 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:scrolls/constants.dart';
+import 'package:scrolls/controller/upload_controller.dart';
+import 'package:scrolls/controller/upload_video_controller.dart';
 import 'package:scrolls/view/widgets/text_input.dart';
 import 'package:video_player/video_player.dart';
 
 class AddCaptionScreen extends StatefulWidget {
-  File videoFile;
-  String videoPath;
+  final File videoFile;
+  final String videoPath;
   AddCaptionScreen(
       {super.key, required this.videoFile, required this.videoPath});
 
@@ -17,7 +20,9 @@ class AddCaptionScreen extends StatefulWidget {
 }
 
 class _AddCaptionScreenState extends State<AddCaptionScreen> {
+  UploadController uploadVideoConntroller = Get.put(UploadController());
   late VideoPlayerController videoPlayerController;
+   VideoUploadController videoUploadController = Get.put(VideoUploadController());
   TextEditingController songNameController = new TextEditingController();
   TextEditingController captionController = new TextEditingController();
 
@@ -32,6 +37,13 @@ class _AddCaptionScreenState extends State<AddCaptionScreen> {
     videoPlayerController.play();
     videoPlayerController.setLooping(true);
     videoPlayerController.setVolume(0.7);
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
+    videoPlayerController.dispose();
   }
 
   @override
@@ -63,7 +75,9 @@ class _AddCaptionScreenState extends State<AddCaptionScreen> {
                       myIcon: Icons.closed_caption,
                       myLabelText: "Caption"),
                       SizedBox(height: 8,),
-                      ElevatedButton(onPressed: (){}, child: Text("Upload",style: TextStyle(color: Colors.white),),style: ElevatedButton.styleFrom(backgroundColor: buttonColor),)
+                      ElevatedButton(onPressed: (){
+                        uploadVideoConntroller.saveVideoInformationToFirestoreDatabase(songNameController.text, captionController.text, widget.videoPath,context);
+                      }, child: Text("Upload",style: TextStyle(color: Colors.white),),style: ElevatedButton.styleFrom(backgroundColor: buttonColor),)
                 ],
               ),
             )
