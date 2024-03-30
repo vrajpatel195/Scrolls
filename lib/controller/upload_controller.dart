@@ -9,7 +9,7 @@ import 'package:video_compress/video_compress.dart';
 
 class UploadController extends GetxController{
   compressVideoFile(String videoFilePath)async {
-      final compressedVideoFile = await VideoCompress.compressVideo(videoFilePath,quality: VideoQuality.LowQuality);
+      final compressedVideoFile = await VideoCompress.compressVideo(videoFilePath,quality: VideoQuality.DefaultQuality);
       return compressedVideoFile!.file;
   }
 uploadCompressedVideoFileToFirebaseStorage(String videoID, String videoFilePath)async{
@@ -35,10 +35,10 @@ return thumbnailImage;
 saveVideoInformationToFirestoreDatabase(String artistSongname,String description,String videoFilePath,BuildContext context)async{
   try{
     DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.uid).get();
-    String videoID = DateTime.now().millisecondsSinceEpoch.toString();
+    String id = DateTime.now().millisecondsSinceEpoch.toString();
 
-    String videoDownloadUrl = await uploadCompressedVideoFileToFirebaseStorage(videoID, videoFilePath);
-        String thumbnailDownloadUrl = await uploadThumbnailImageToFirebaseStorage(videoID, videoFilePath);
+    String videoDownloadUrl = await uploadCompressedVideoFileToFirebaseStorage(id, videoFilePath);
+        String thumbnailDownloadUrl = await uploadThumbnailImageToFirebaseStorage(id, videoFilePath);
 
         Video videoObject = Video(  uid: FirebaseAuth.instance.currentUser!.uid,
       username: (userDoc.data()! as Map<String , dynamic>)['name'],
@@ -50,9 +50,9 @@ saveVideoInformationToFirestoreDatabase(String artistSongname,String description
       likes: [],
       profilePic: (userDoc.data()! as Map<String , dynamic>)['profilePic'],
       caption: description,
-      id: videoID);
+      id: id);
 
-      await FirebaseFirestore.instance.collection("videos").doc(videoID).set(videoObject.toJson());
+      await FirebaseFirestore.instance.collection("videos").doc(id).set(videoObject.toJson());
       Get.to(HomeScreen());
           Get.snackbar("Video Uploaded Successfully", "Thank You Sharing Your Content");
 

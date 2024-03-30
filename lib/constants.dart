@@ -1,8 +1,11 @@
 import 'dart:math';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:scrolls/view/screens/add_video.dart';
 import 'package:scrolls/view/screens/display_screen.dart';
+import 'package:scrolls/view/screens/profile_screen.dart';
+import 'package:scrolls/view/screens/search_screen.dart';
 
 // getRandomColor() => Colors.primaries[Random().nextInt(Colors.primaries.length)];
 
@@ -20,8 +23,8 @@ const darkBackgroundColor = Color(0xff0C090A);
 
 var pageindex = [
   DisplayVideo_Screen(),
-  Text('Search'),
+  SearchScreen(),
   AddVideoScreen(),
   Text('Message'),
-  Text('Profile')
+ ProfileScreen(uid: FirebaseAuth.instance.currentUser!.uid,),
 ];

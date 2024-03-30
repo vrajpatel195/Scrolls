@@ -20,7 +20,8 @@ class _ScrollsVideoPlayerState extends State<ScrollsVideoPlayer> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    videoPlayerController  = VideoPlayerController.networkUrl(widget.videoUrl)..initialize().then((value) {videoPlayerController.play();});
+    videoPlayerController  = VideoPlayerController.networkUrl(widget.videoUrl)..initialize().then((value) {videoPlayerController.play();
+    videoPlayerController.setLooping(true);});
   }
 
   @override

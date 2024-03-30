@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:scrolls/model/user.dart';
@@ -25,6 +26,7 @@ pickImage()async {
 
 //User State Persistance
 late Rx<User?> _user;
+User get user => _user.value!;
 @override
   void onReady() {
     // TODO: implement onReady
@@ -87,6 +89,11 @@ await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: p
     }}catch(e){
       Get.snackbar("Error Logging in", e.toString());
     }
+  }
+
+  signOut(){
+    FirebaseAuth.instance.signOut();
+Get.offAll(LoginScreen());
   }
 }
 
