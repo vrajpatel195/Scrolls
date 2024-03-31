@@ -26,6 +26,15 @@ class _AddCaptionScreenState extends State<AddCaptionScreen> {
   TextEditingController songNameController = new TextEditingController();
   TextEditingController captionController = new TextEditingController();
 
+  Widget UploadContent = Text("Upload");
+
+  uploadVid(){
+    UploadContent=Text("Please Wait..");
+    setState(() {
+      
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -76,8 +85,10 @@ class _AddCaptionScreenState extends State<AddCaptionScreen> {
                       myLabelText: "Caption"),
                       SizedBox(height: 8,),
                       ElevatedButton(onPressed: (){
+                        uploadVid();
                         uploadVideoConntroller.saveVideoInformationToFirestoreDatabase(songNameController.text, captionController.text, widget.videoPath,context);
-                      }, child: Text("Upload",style: TextStyle(color: Colors.white),),style: ElevatedButton.styleFrom(backgroundColor: buttonColor),)
+
+                      }, child: UploadContent,style: ElevatedButton.styleFrom(backgroundColor: buttonColor),)
                 ],
               ),
             )
